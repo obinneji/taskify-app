@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
  import { databases, DatabaseId, collectionId } from "../config";
  import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
  import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
-import AdviceGenerator from "../components/adviceGenerator";
+import AdviceGenerator from "../components/AdviceGenerator";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { useContext} from 'react'
