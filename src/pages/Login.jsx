@@ -3,6 +3,9 @@ import { userContext } from '../context/userContext';
 import { useContext, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import loginImage from '../assets/loginImage.jpg'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Login = () => {
@@ -24,8 +27,10 @@ const Login = () => {
         navigate('/tasks')
         console.log(response);
         localStorage.setItem('isLogin', JSON.stringify(!login));
+        toast.success("Successfully logged in")
   
       }, error => {
+        toast.error(error.message)
         setError(error.message)
         console.log(error);
 
@@ -38,7 +43,6 @@ const Login = () => {
     
 
   }
-  console.log(import.meta.env.VITE_PROJECTID)
 
   return (
     <>
@@ -84,6 +88,7 @@ const Login = () => {
           </form>
         </div>
       </section>
+      <ToastContainer />
     </>
   )
 }

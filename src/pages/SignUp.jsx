@@ -3,6 +3,8 @@ import { userContext } from '../context/userContext';
 import {useContext, useState} from 'react'
 import {useNavigate, Link} from 'react-router-dom'
 import signUpImage from '../assets/signUpImage.jpg'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -24,9 +26,11 @@ const SignUp = () => {
                 setPassword("")
                 navigate('/login')
                 setError('')
+                toast.success("Successfully sign up")
             }, error => {
                 setError(error.message)
                 console.log(error);
+                toast.error(error.message)
             });
         } else if ( username === "" && password === "" && email === "") {
             setError('Fields cannot be empty')
@@ -41,6 +45,7 @@ const SignUp = () => {
         
     }
     return (
+        <>
         <section className='w-full flex flex-col sm:flex-row item-center justify-center px-10 gap-10'>
             <div className='sm:w-1/2 w-full mt-8 order-2 self-center py-7'>
                 <h3
@@ -90,6 +95,8 @@ const SignUp = () => {
                 <img src={signUpImage}  className='rounded w-full'/>
             </div>
         </section>
+        <ToastContainer/>
+        </>
     )
 }
 export default SignUp

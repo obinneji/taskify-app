@@ -5,6 +5,14 @@ import { useEffect, useState } from "react";
  import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import AdviceGenerator from "../components/adviceGenerator";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { useContext} from 'react'
+import { useNavigate } from "react-router-dom";
+import { userContext } from '../context/userContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const Taskspage = () => {
  const [showForm, setshowform] = useState(true);
  const [showNew, setshowNew] = useState(true);
@@ -17,6 +25,10 @@ const Taskspage = () => {
  const [inputTitle, setinputTitle] = useState("");
  const [inputDesc, setinputDesc] = useState("");
  const [uid, setUid] = useState('')
+ const { login, setLogin,} = useContext(userContext)
+ const navigate = useNavigate()
+
+ 
 
  const [items, setitems] = useState([
  ]);
@@ -25,7 +37,6 @@ const Taskspage = () => {
 
   promise.then(function (response) {
     setitems(response.documents)
-      console.log(response); 
   }, function (error) {
       console.log(error); 
   });
@@ -50,7 +61,7 @@ const Taskspage = () => {
  
    e.preventDefault();
    if (!inputTitle || !inputDesc) {
-     alert("fill data");
+     toast.error("Fill Tasks")
      showList(false);
    } else if (inputTitle && !toggleSubmit) {
     
@@ -62,6 +73,7 @@ const Taskspage = () => {
          return elem;
        })
      );
+     toast.success('Edited successfully')
  
      setinputTitle("");
      setinputDesc("");
@@ -77,7 +89,6 @@ const Taskspage = () => {
      };
      const promise = databases.createDocument(DatabaseId, collectionId, allinputTitle.id, allinputTitle);
     promise.then(function (response) {
-        console.log(response); // Success
     }, function (error) {
         console.log(error); // Failure
     });
@@ -85,13 +96,13 @@ const Taskspage = () => {
      setinputTitle("");
      setinputDesc("");
      setshowform(false);
+     toast.success("Added successfully")
    }
  };
  //   SUBMITTING FORM
  
  //   DELETE
  const handleDelete = (index) => {
-   console.log(index);
    const updatedItems = items.filter((elem) => {
      return index !== elem.id;
    });
@@ -102,6 +113,7 @@ const Taskspage = () => {
         console.log(error); // Failure
     });
    setdeleteMessage(true);
+   toast.success("Deleted successfully")
  
    setTimeout(() => {
      setitems(updatedItems);
@@ -126,10 +138,8 @@ const Taskspage = () => {
    setinputTitle(newEditItem.name);
    setinputDesc(newEditItem.desc);
 
-   // setshowDelete(true)
  
    setisEditItem(id);
-  //  console.log(newEditItem);
 
  };
  //   EDIT
@@ -146,19 +156,34 @@ const Taskspage = () => {
 const handleUpdate =  () => {
   const promise = databases.updateDocument(DatabaseId,collectionId, uid ,{name: inputTitle, desc: inputDesc});
   promise.then(function (response) {
-    console.log(response); // Success
 }, function (error) {
     console.log(error); // Failure
+    
 });
+}
+
+
+// Logout from APP
+
+const handleLogout = () => {
+  setLogin(false)
+  localStorage.setItem('isLogin', JSON.stringify(!login));
+  navigate('/login')
+  toast.success("successfully logged out")
 }
  return (
    <>
      {showNew ? (
        <div className="m-7">
          <div className="col-12 text-end">
-           <button className="bg-green px-5 py-4  text-white rounded m-5 " onClick={handleAdd}>
+           <button className="bg-green px-5 py-4  text-white rounded m-5 font-bold text-lg " onClick={handleAdd}>
              <AddOutlinedIcon />
            </button>
+           <button onClick={handleLogout} className='bg-error px-5 py-4  text-white rounded m-5'>
+            Logout
+           <LogoutOutlinedIcon />
+           </button>
+
          </div>
        </div>
      ) : (
@@ -220,11 +245,11 @@ const handleUpdate =  () => {
      {showList ? (
        <div className="px-5 ">
          {deleteMessage ? (
-           <p className="text-error align-center">Item Deleted Successfully</p>
+           <p className="text-error align-center"></p>
          ) : (
            ""
          )}
-         {items.map((elem) => {
+         {items.length == 0 ? <h2 className="font-krona text-2xl ml-8 mt-8">No Tasks </h2> : items.map((elem) => {
            return (
              <div
                className="rounded shadow-md p-3 mb-3 bg-white "
@@ -265,6 +290,7 @@ const handleUpdate =  () => {
        ""
      )}
      <AdviceGenerator />
+     <ToastContainer />
    </>
  );
 };

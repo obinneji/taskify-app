@@ -11,6 +11,8 @@ import Error from './pages/Error'
 import { userContext } from './context/userContext'
 import './index.css'
 import Taskpage from './pages/Taskspage'
+import 'react-toastify/dist/ReactToastify.css';
+import {  ToastContainer } from 'react-toastify';
 
 
  
@@ -19,11 +21,12 @@ function App() {
   const [username, setUsername] =  useState('')
   const [email, setEmail] =  useState('')
   const [password, setPassword] =  useState('')
-  const [login, setLogin] = useState(JSON.parse(localStorage.getItem('isLogin')) || true)
+  const [login, setLogin] = useState(JSON.parse(localStorage.getItem('isLogin')) || false)
   const [loading, setLoading] = useState(false)
   
  
   return (
+    <>
     <userContext.Provider value={{username, setUsername, password, setPassword, email, setEmail, login, setLogin, loading, setLoading}}>
     <BrowserRouter>
         <Routes>
@@ -41,6 +44,9 @@ function App() {
         </Routes>
     </BrowserRouter>
   </userContext.Provider>
+  <ToastContainer />
+  
+  </>
   )
 }
 
