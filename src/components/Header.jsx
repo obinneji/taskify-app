@@ -6,8 +6,8 @@ const Header = () => {
       <Link to="/"><h3 className="font-krona text-white text-xl font-normal">Taskify</h3></Link>
       <ul className="flex flex-col sm:flex-row gap-5 sm:gap-10 mt-3">
         <li><a href="/" className="text-white font-inter font-medium text-l hover:text-white hover:bg-purple hover:border-2 hover:p-3 rounded">Home</a></li>
-        <li><a href="" className="text-white font-inter font-medium text-l hover:text-white hover:bg-purple hover:border-2 hover:p-3 rounded">About</a></li>
-        <li><a href="" className="text-white font-inter font-medium text-l hover:bg-purple hover:border-2 hover:p-3 rounded">Features</a></li>
+        <li><a href="#about" className="text-white font-inter font-medium text-l hover:text-white hover:bg-purple hover:border-2 hover:p-3 rounded">About</a></li>
+        <li><a href="#features" className="text-white font-inter font-medium text-l hover:bg-purple hover:border-2 hover:p-3 rounded">Features</a></li>
         <li><Link to='/tasks' className="text-white font-inter font-medium text-l hover:bg-purple hover:border-2 hover:p-3 rounded">Tasks</Link></li>
       </ul>
       <div className="flex flex-col sm:flex-row gap-5 align-center">

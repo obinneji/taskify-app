@@ -23,7 +23,7 @@ const Home = () => {
     </div>
    </section>
    {/* features section */}
-   <aside className='px-20'>
+   <aside className='px-20' id='features'>
   <div className='flex items-center justify-center mt-5'>
     <h2 className='font-krona font-normal text-xl mx-auto'>FEATURES</h2>
 
@@ -48,7 +48,7 @@ const Home = () => {
     <div  className='flex items-center justify-center mt-2 mb-5'><Link to='/signup'><button className='bg-yellow align-center py-3 px-3 rounded font-inter font-medium text-black text-lg bg-yellow text-black rounded hover:bg-black hover:text-yellow'>I want to try it</button></Link></div>
    </aside>
    {/* article section */}
-   <article className='flex sm:flex-row flex-col items-center px-20 gap-5 pb-10'>
+   <article className='flex sm:flex-row flex-col items-center px-20 gap-5 pb-10' id='about'>
     <img src={sectionImage} alt='section-image' />
     <div>
       <h2 className='font-krona font-normal text-4xl my-4'>Grow faster than your compititors</h2>
