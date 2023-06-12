@@ -24,6 +24,8 @@ const Taskspage = () => {
  const [deleteMessagesuccess, setdeleteMessagesuccess] = useState(false);
  const [inputTitle, setinputTitle] = useState("");
  const [inputDesc, setinputDesc] = useState("");
+ const [inputDate, setInputDate] = useState("");  
+
  const [uid, setUid] = useState('')
  const { login, setLogin,} = useContext(userContext)
  const navigate = useNavigate()
@@ -52,6 +54,9 @@ const Taskspage = () => {
  const handleInputdesc = (e) => {
    setinputDesc(e.target.value);
  };
+ const handleInputdate = (e) => {
+  setInputDate(e.target.value)
+ }
  //   HANDLING INPUT FIELDS
  
  //   SUBMITTING FORM
@@ -77,6 +82,7 @@ const Taskspage = () => {
  
      setinputTitle("");
      setinputDesc("");
+     setInputDate("")
      settoggleSubmit(true);
      setshowform(false);
      setshowDelete(true);
@@ -86,6 +92,7 @@ const Taskspage = () => {
        id: new Date().getTime().toString(),
        name: inputTitle,
        desc: inputDesc,
+       date: inputDate
      };
      const promise = databases.createDocument(DatabaseId, collectionId, allinputTitle.id, allinputTitle);
     promise.then(function (response) {
@@ -95,6 +102,7 @@ const Taskspage = () => {
      setitems([allinputTitle, ...items]);
      setinputTitle("");
      setinputDesc("");
+     setInputDate("")
      setshowform(false);
      toast.success("Added successfully")
    }
@@ -137,6 +145,7 @@ const Taskspage = () => {
    });
    setinputTitle(newEditItem.name);
    setinputDesc(newEditItem.desc);
+   setInputDate(newEditItem.date)
 
  
    setisEditItem(id);
@@ -154,7 +163,7 @@ const Taskspage = () => {
  // ADD NEW TASK
 
 const handleUpdate =  () => {
-  const promise = databases.updateDocument(DatabaseId,collectionId, uid ,{name: inputTitle, desc: inputDesc});
+  const promise = databases.updateDocument(DatabaseId,collectionId, uid ,{name: inputTitle, desc: inputDesc, date: inputDate});
   promise.then(function (response) {
 }, function (error) {
     console.log(error); // Failure
@@ -226,6 +235,20 @@ const handleLogout = () => {
                  value={inputDesc}
                />
               </div>
+              <div className="mb-2">
+              <label className="block mb-2 text-lg font-medium text-black" htmlFor="date">
+                 Enter Date
+               </label>
+               <input
+                 type="text"
+                 name="date"
+                 id="date"
+                 placeholder="yyyy-mm-dd"
+                 className="bg-gray-50 border border-gray-300  text-lg rounded-lg  block w-full p-2 placeholder-gray focus:border-blue-500"
+                 onChange={handleInputdate}
+                 value={inputDate}
+               />
+              </div>
                
                {/* <div className="text-center"> */}
                {toggleSubmit ? (
@@ -259,6 +282,8 @@ const handleLogout = () => {
                  <div>
                    <h4 className="font-krona text-xl font-medium ">{elem.name.toUpperCase()}</h4>
                    <p className="font-inter text-lg font-small">{elem.desc}</p>
+                   <p className="font-inter text-lg font-small">{elem.date.slice(0,10)}</p>
+
                  </div>
                  <div>
                  <button

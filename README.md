@@ -1,49 +1,38 @@
-# [Name of your Project]: [Appwrite](https://appwrite.io) [Hashnode](https://hashnode.com) Hackathon
+# [Name of your Project]: [Taskify](taskify-webapp.vercel.app)
 
 ## Team Details
 
-<!--- 
 
 Mention all team members, including yourself, in the following format
 
-- Name of Team Member 1 - @teammember1
-- Name of Team Member 2 - @teammember2
-- Name of Team Member 3 - @teammember3
-.
-.
-.
+- Obinneji Chibuzor - @obinneji
 
--->
 
 ## Description of Project
 
-<!--- Add the description of your project in this section -->
+This project is a task manager app that allows autheticated users to  manage their shedule and plan tasks that are ahead of them. The user can  create new tasks, update tasks and delete task. For the starts only the test user is allowed to perform all CRUD operation any other user can only perform read operation. As i progress with building alll users will be allowed to  creatr, read, update and delete tasks that are specific to them.
 
 ## Tech Stack
 
-<!--- 
 
-Add the tech stack of your project in the following format:
-
-- Svelte
+- Reactjs
 - Appwrite Cloud
     - Authentication
     - Database
-    - Cloud Functions - Node.js 
 - Vercel
 
-Make sure to mention which Appwrite services you have used and how each service helped you build the project.
 
--->
 
 ## Challenges We Faced
 
 <!--- Mentions what challenges you faced in the development process and how you overcame those -->
 
 ## Public Code Repo
-
+[Github repo](https://github.com/obinneji/taskify-app/)
 <!--- Add a link to a public code repo in this section -->
 
 ## Demo Link
+[Demo link](taskify-webapp.vercel.app)
+[Demo Link video]()
 
 <!--- Add a link to the demo recording of your project in this section -->
