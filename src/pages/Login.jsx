@@ -61,7 +61,7 @@ const Login = () => {
             </p>
             <p className='mb-4 italic'>{`I dont't have an account?`}<Link to='/signup' className='underline'>Sign up</Link></p>
 
-          <form noValidate className='flex  flex-col'>
+          <form noValidate  className='flex  flex-col'>
             <label htmlFor="email" className='text-lg font-medium font-krona mb-3'> Email</label>
             <input 
               type="email" 

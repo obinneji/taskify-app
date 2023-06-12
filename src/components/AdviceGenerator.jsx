@@ -17,7 +17,7 @@ function AdviceGenerator() {
   return (
     <div className='main-container'>
       <div className="main font-krona">
-        <p className='advice-id'>Advice #{adviceId}</p>
+        <p className='advice-id'>Productivity tip #{adviceId}</p>
         <div className='section'><h2 className='advice-word'>&ldquo;{advice}&rdquo;</h2></div>
       </div>
     </div>
