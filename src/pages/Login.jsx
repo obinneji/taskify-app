@@ -25,14 +25,14 @@ const Login = () => {
         setPassword("")
         setLogin(true)
         navigate('/tasks')
-        console.log(response);
+        // console.log(response);
         localStorage.setItem('isLogin', JSON.stringify(!login));
         toast.success("Successfully logged in")
   
       }, error => {
         toast.error(error.message)
         setError(error.message)
-        console.log(error);
+        // console.log(error);
 
       });
     } else if (email === '') {

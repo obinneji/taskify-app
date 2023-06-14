@@ -21,7 +21,7 @@ const SignUp = () => {
                 password,
                 username
             ).then(response => {
-                console.log(response);
+                // console.log(response);
                 setEmail("")
                 setPassword("")
                 navigate('/login')
@@ -29,7 +29,7 @@ const SignUp = () => {
                 toast.success("Successfully sign up")
             }, error => {
                 setError(error.message)
-                console.log(error);
+                // console.log(error);
                 toast.error(error.message)
             });
         } else if ( username === "" && password === "" && email === "") {

@@ -40,7 +40,7 @@ const Taskspage = () => {
   promise.then(function (response) {
     setitems(response.documents)
   }, function (error) {
-      console.log(error); 
+      // console.log(error); 
   });
  
    
@@ -97,7 +97,7 @@ const Taskspage = () => {
      const promise = databases.createDocument(DatabaseId, collectionId, allinputTitle.id, allinputTitle);
     promise.then(function (response) {
     }, function (error) {
-        console.log(error); // Failure
+        // console.log(error); 
     });
      setitems([allinputTitle, ...items]);
      setinputTitle("");
@@ -116,9 +116,9 @@ const Taskspage = () => {
    });
    const promise = databases.deleteDocument(DatabaseId, collectionId, index);
       promise.then(function (response) {
-        console.log(response); // Success
+        // console.log(response); 
     }, function (error) {
-        console.log(error); // Failure
+        // console.log(error);
     });
    setdeleteMessage(true);
    toast.success("Deleted successfully")
@@ -166,7 +166,7 @@ const handleUpdate =  () => {
   const promise = databases.updateDocument(DatabaseId,collectionId, uid ,{name: inputTitle, desc: inputDesc, date: inputDate});
   promise.then(function (response) {
 }, function (error) {
-    console.log(error); // Failure
+    // console.log(error);
     
 });
 }
